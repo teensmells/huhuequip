@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+ 
+    <package name="huhuequip" extends="struts-default">
+ 
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+ 
+ 		<action name="equipmanage" class="wang.hu.huhuequip.action.EquipManageAction">
+ 			<result name="success" type="freemarker">/WEB-INF/pages/equipmanage.ftl</result>
+ 		</action>
+ 		
+ 		<action name="excelimport" class="wang.hu.huhuequip.action.ExcelImportAction">
+ 			<result name="success" type="freemarker">/WEB-INF/pages/excelimport.ftl</result>
+ 			<result name="addsuccess" type="redirect">/huhuequip/equipmanage</result>
+ 		</action>
+ 
+    </package>
+ 
+</struts>
