@@ -7,10 +7,7 @@
 package wang.hu.huhuequip.action;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +38,8 @@ public class ExcelImportAction extends ActionSupport {
 
     private File                excelFile;
     private String              msg;
+    private String              upload;
+    private String              excelFileName;
 
     private EquipSource         equipSource      = SourceFactory.getEquipmentSource("excel");
 
@@ -49,21 +48,28 @@ public class ExcelImportAction extends ActionSupport {
 
     @Override
     public String execute() {
-        if (excelFile == null) {
+        if (StringUtils.isEmpty(upload)) {
+            return SUCCESS;
+        }
+
+        if (excelFile == null || StringUtils.isEmpty(excelFileName)) {
+            msg = "上传失败，请联系朱翀";
+            return SUCCESS;
+        }
+
+        if (!excelFileName.endsWith("xls")) {
+            msg = "只支持上传xls文件";
             return SUCCESS;
         }
 
         List<EquipVO> equipVOs = equipSource.readEquip(excelFile);
         if (CollectionUtils.isEmpty(equipVOs)) {
-            msg = "read excel fail or excel is empty. contact chong.zhu";
+            msg = "读取excel失败，或excel为空，请联系朱翀";
             return SUCCESS;
         }
 
-        Set<String> specialtyNames = fillSpecialtyId(equipVOs);
-        List<SpecialtyVO> specialtyVOs = convert2VOs(specialtyNames);
-
+        fillSpecialtyId(equipVOs);
         equipService.addEquips(equipVOs);
-        specialtyService.addSpecialtys(specialtyVOs);
 
         return ADD_SUCCESS;
     }
@@ -72,22 +78,16 @@ public class ExcelImportAction extends ActionSupport {
      * @param specialtyNames
      * @return
      */
-    private List<SpecialtyVO> convert2VOs(Set<String> specialtyNames) {
-        List<SpecialtyVO> specialtyVOs = new ArrayList<SpecialtyVO>(specialtyNames.size());
-        for (String specialtyName : specialtyNames) {
-            SpecialtyVO specialtyVO = new SpecialtyVO();
-            specialtyVO.setSpecialtyName(specialtyName);
-            specialtyVOs.add(specialtyVO);
-        }
-        return specialtyVOs;
+    private SpecialtyVO convert2VO(String specialtyName) {
+        SpecialtyVO specialtyVO = new SpecialtyVO();
+        specialtyVO.setSpecialtyName(specialtyName);
+        return specialtyVO;
     }
 
     /**
      * @param equipVOs
      */
-    private Set<String> fillSpecialtyId(List<EquipVO> equipVOs) {
-        Set<String> specialtyNames = new HashSet<String>();
-
+    private void fillSpecialtyId(List<EquipVO> equipVOs) {
         for (EquipVO equipVO : equipVOs) {
             if (StringUtils.isEmpty(equipVO.getSpecialtyName())) {
                 continue;
@@ -95,13 +95,16 @@ public class ExcelImportAction extends ActionSupport {
 
             SpecialtyVO specialtyVO = specialtyService.loadSpecialtyByName(equipVO.getSpecialtyName());
             if (specialtyVO == null) {
-                specialtyNames.add(equipVO.getSpecialtyName());
-                continue;
+                int id = specialtyService.addSpecialty(convert2VO(equipVO.getSpecialtyName()));
+                if (id == 0) {
+                    continue;
+                }
+                equipVO.setSpecialtyId(id);
+            } else {
+                equipVO.setSpecialtyId(specialtyVO.getId());
             }
-            equipVO.setSpecialtyId(specialtyVO.getId());
         }
 
-        return specialtyNames;
     }
 
     /**
@@ -116,6 +119,34 @@ public class ExcelImportAction extends ActionSupport {
      */
     public String getMsg() {
         return msg;
+    }
+
+    /**
+     * @return the upload
+     */
+    public String getUpload() {
+        return upload;
+    }
+
+    /**
+     * @param upload the upload to set
+     */
+    public void setUpload(String upload) {
+        this.upload = upload;
+    }
+
+    /**
+     * @return the excelFileName
+     */
+    public String getExcelFileName() {
+        return excelFileName;
+    }
+
+    /**
+     * @param excelFileName the excelFileName to set
+     */
+    public void setExcelFileName(String excelFileName) {
+        this.excelFileName = excelFileName;
     }
 
 }

@@ -33,6 +33,19 @@ public class EquipVO {
     private Date   addTime;
     private Date   updateTime;
 
+    private String cutPriceYear;
+    private String cutName;
+    private String cutSpecification;
+    private String cutTechParams;
+    private String cutUnit;
+    private String cutPriceSource;
+    private String cutContractNo;
+    private String cutProject;
+    private String cutSubProject;
+    private String cutSpecialtyName;
+    private String cutSupplierAndContact;
+    private String cutMemo;
+
     /**
      * @return the id
      */
@@ -269,6 +282,174 @@ public class EquipVO {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * @return the cutPriceYear
+     */
+    public String getCutPriceYear() {
+        return cutPriceYear;
+    }
+
+    /**
+     * @param cutPriceYear the cutPriceYear to set
+     */
+    public void setCutPriceYear(String cutPriceYear) {
+        this.cutPriceYear = cutPriceYear;
+    }
+
+    /**
+     * @return the cutName
+     */
+    public String getCutName() {
+        return cutName;
+    }
+
+    /**
+     * @param cutName the cutName to set
+     */
+    public void setCutName(String cutName) {
+        this.cutName = cutName;
+    }
+
+    /**
+     * @return the cutSpecification
+     */
+    public String getCutSpecification() {
+        return cutSpecification;
+    }
+
+    /**
+     * @param cutSpecification the cutSpecification to set
+     */
+    public void setCutSpecification(String cutSpecification) {
+        this.cutSpecification = cutSpecification;
+    }
+
+    /**
+     * @return the cutTechParams
+     */
+    public String getCutTechParams() {
+        return cutTechParams;
+    }
+
+    /**
+     * @param cutTechParams the cutTechParams to set
+     */
+    public void setCutTechParams(String cutTechParams) {
+        this.cutTechParams = cutTechParams;
+    }
+
+    /**
+     * @return the cutUnit
+     */
+    public String getCutUnit() {
+        return cutUnit;
+    }
+
+    /**
+     * @param cutUnit the cutUnit to set
+     */
+    public void setCutUnit(String cutUnit) {
+        this.cutUnit = cutUnit;
+    }
+
+    /**
+     * @return the cutPriceSource
+     */
+    public String getCutPriceSource() {
+        return cutPriceSource;
+    }
+
+    /**
+     * @param cutPriceSource the cutPriceSource to set
+     */
+    public void setCutPriceSource(String cutPriceSource) {
+        this.cutPriceSource = cutPriceSource;
+    }
+
+    /**
+     * @return the cutContractNo
+     */
+    public String getCutContractNo() {
+        return cutContractNo;
+    }
+
+    /**
+     * @param cutContractNo the cutContractNo to set
+     */
+    public void setCutContractNo(String cutContractNo) {
+        this.cutContractNo = cutContractNo;
+    }
+
+    /**
+     * @return the cutProject
+     */
+    public String getCutProject() {
+        return cutProject;
+    }
+
+    /**
+     * @param cutProject the cutProject to set
+     */
+    public void setCutProject(String cutProject) {
+        this.cutProject = cutProject;
+    }
+
+    /**
+     * @return the cutSubProject
+     */
+    public String getCutSubProject() {
+        return cutSubProject;
+    }
+
+    /**
+     * @param cutSubProject the cutSubProject to set
+     */
+    public void setCutSubProject(String cutSubProject) {
+        this.cutSubProject = cutSubProject;
+    }
+
+    /**
+     * @return the cutSpecialtyName
+     */
+    public String getCutSpecialtyName() {
+        return cutSpecialtyName;
+    }
+
+    /**
+     * @param cutSpecialtyName the cutSpecialtyName to set
+     */
+    public void setCutSpecialtyName(String cutSpecialtyName) {
+        this.cutSpecialtyName = cutSpecialtyName;
+    }
+
+    /**
+     * @return the cutSupplierAndContact
+     */
+    public String getCutSupplierAndContact() {
+        return cutSupplierAndContact;
+    }
+
+    /**
+     * @param cutSupplierAndContact the cutSupplierAndContact to set
+     */
+    public void setCutSupplierAndContact(String cutSupplierAndContact) {
+        this.cutSupplierAndContact = cutSupplierAndContact;
+    }
+
+    /**
+     * @return the cutMemo
+     */
+    public String getCutMemo() {
+        return cutMemo;
+    }
+
+    /**
+     * @param cutMemo the cutMemo to set
+     */
+    public void setCutMemo(String cutMemo) {
+        this.cutMemo = cutMemo;
     }
 
 }

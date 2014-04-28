@@ -5,6 +5,8 @@
  
 <struts>
  
+ 	<constant name="struts.multipart.saveDi" value="C:\strutstemp"></constant>
+ 
     <package name="huhuequip" extends="struts-default">
  
         <action name="index">
@@ -17,8 +19,21 @@
  		
  		<action name="excelimport" class="wang.hu.huhuequip.action.ExcelImportAction">
  			<result name="success" type="freemarker">/WEB-INF/pages/excelimport.ftl</result>
+ 			<result name="input" type="freemarker">/WEB-INF/pages/uploaderror.ftl</result>
  			<result name="addsuccess" type="redirect">/huhuequip/equipmanage</result>
  		</action>
+ 
+    </package>
+ 
+ 	<package name="/ajax" extends="json-default">
+ 
+        <action name="equipupdate" class="wang.hu.huhuequip.action.EquipUpdateAction">
+            <result type="json"></result>
+        </action>
+        
+         <action name="equipadd" class="wang.hu.huhuequip.action.EquipAddAction">
+            <result type="json"></result>
+        </action>
  
     </package>
  

@@ -6,14 +6,17 @@
  */
 package wang.hu.huhuequip.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.collections.CollectionUtils;
 
 import wang.hu.huhuequip.service.EquipService;
 import wang.hu.huhuequip.service.SpecialtyService;
 import wang.hu.huhuequip.util.PageModel;
 import wang.hu.huhuequip.util.ServiceLocator;
+import wang.hu.huhuequip.util.StringUtil;
+import wang.hu.huhuequip.vo.EquipVO;
 import wang.hu.huhuequip.vo.SpecialtyVO;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -36,22 +39,49 @@ public class EquipManageAction extends ActionSupport {
     private PageModel                     pageModel;
     private List<SpecialtyVO>             specialtyVOs;
 
-    private String                        method;
     private int                           specialtyId;
     private int                           page;
 
     private static final int              LIMIT            = 20;
 
     @Override
-    public String execute() {
-        if (StringUtils.isEmpty(method)) {
+    public String execute() throws UnsupportedEncodingException {
+        if (specialtyId == 0) {
             pageModel = equipService.paginateAllEquip(page == 0 ? 1 : page, LIMIT);
         } else {
             pageModel = equipService.paginateEquipBySpecialtyId(specialtyId, page == 0 ? 1 : page, LIMIT);
         }
 
         specialtyVOs = specialtyService.findAllSpecialty();
+
+        cutStr();
+
         return SUCCESS;
+    }
+
+    /**
+     * @throws UnsupportedEncodingException
+     */
+    @SuppressWarnings("unchecked")
+    private void cutStr() throws UnsupportedEncodingException {
+        if (pageModel == null || CollectionUtils.isEmpty(pageModel.getList())) {
+            return;
+        }
+
+        for (EquipVO equipVO : (List<EquipVO>) pageModel.getList()) {
+            equipVO.setCutContractNo(StringUtil.cutString(equipVO.getContractNo(), 9));
+            equipVO.setCutMemo(StringUtil.cutString(equipVO.getMemo(), 3));
+            equipVO.setCutName(StringUtil.cutString(equipVO.getName(), 9));
+            equipVO.setCutPriceSource(StringUtil.cutString(equipVO.getPriceSource(), 9));
+            equipVO.setCutPriceYear(StringUtil.cutString(equipVO.getPriceYear(), 9));
+            equipVO.setCutProject(StringUtil.cutString(equipVO.getProject(), 6));
+            equipVO.setCutSpecialtyName(StringUtil.cutString(equipVO.getSpecialtyName(), 3));
+            equipVO.setCutSpecification(StringUtil.cutString(equipVO.getSpecification(), 9));
+            equipVO.setCutSubProject(StringUtil.cutString(equipVO.getSubProject(), 9));
+            equipVO.setCutSupplierAndContact(StringUtil.cutString(equipVO.getSupplierAndContact(), 6));
+            equipVO.setCutTechParams(StringUtil.cutString(equipVO.getTechParams(), 9));
+            equipVO.setCutUnit(StringUtil.cutString(equipVO.getUnit(), 3));
+        }
     }
 
     /**
@@ -66,20 +96,6 @@ public class EquipManageAction extends ActionSupport {
      */
     public List<SpecialtyVO> getSpecialtyVOs() {
         return specialtyVOs;
-    }
-
-    /**
-     * @return the method
-     */
-    public String getMethod() {
-        return method;
-    }
-
-    /**
-     * @param method the method to set
-     */
-    public void setMethod(String method) {
-        this.method = method;
     }
 
     /**

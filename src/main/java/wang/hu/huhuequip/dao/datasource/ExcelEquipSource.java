@@ -71,40 +71,40 @@ public class ExcelEquipSource implements EquipSource {
                 equip.setPriceYear(row.getCell(0).getNumericCellValue() + "");
             }
             if (row.getCell(1) != null) {
-                equip.setName(row.getCell(1).getStringCellValue());
+                equip.setName(row.getCell(1).getRichStringCellValue().getString());
             }
             if (row.getCell(2) != null) {
-                equip.setSpecification(row.getCell(2).getStringCellValue());
+                equip.setSpecification(row.getCell(2).getRichStringCellValue().getString());
             }
             if (row.getCell(3) != null) {
-                equip.setTechParams(row.getCell(3).getStringCellValue());
+                equip.setTechParams(row.getCell(3).getRichStringCellValue().getString());
             }
             if (row.getCell(4) != null) {
-                equip.setUnit(row.getCell(4).getStringCellValue());
+                equip.setUnit(row.getCell(4).getRichStringCellValue().getString());
             }
             if (row.getCell(5) != null) {
                 equip.setUnitPrice(row.getCell(5).getNumericCellValue());
             }
             if (row.getCell(6) != null) {
-                equip.setPriceSource(row.getCell(6).getStringCellValue());
+                equip.setPriceSource(row.getCell(6).getRichStringCellValue().getString());
             }
             if (row.getCell(7) != null) {
-                equip.setContractNo(row.getCell(7).getStringCellValue());
+                equip.setContractNo(row.getCell(7).getRichStringCellValue().getString());
             }
             if (row.getCell(8) != null) {
-                equip.setProject(row.getCell(8).getStringCellValue());
+                equip.setProject(row.getCell(8).getRichStringCellValue().getString());
             }
             if (row.getCell(9) != null) {
-                equip.setSubProject(row.getCell(9).getStringCellValue());
+                equip.setSubProject(row.getCell(9).getRichStringCellValue().getString());
             }
             if (row.getCell(10) != null) {
-                equip.setSpecialtyName(row.getCell(10).getStringCellValue());
+                equip.setSpecialtyName(row.getCell(10).getRichStringCellValue().getString());
             }
             if (row.getCell(11) != null) {
-                equip.setSupplierAndContact(row.getCell(11).getStringCellValue());
+                equip.setSupplierAndContact(row.getCell(11).getRichStringCellValue().getString());
             }
             if (row.getCell(12) != null) {
-                equip.setMemo(row.getCell(12).getStringCellValue());
+                equip.setMemo(row.getCell(12).getRichStringCellValue().getString());
             }
             equipVOs.add(equip);
         }

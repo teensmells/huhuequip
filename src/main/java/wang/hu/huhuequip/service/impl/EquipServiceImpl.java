@@ -87,4 +87,16 @@ public class EquipServiceImpl implements EquipService {
         }
         return pageModel;
     }
+
+    @Override
+    public void updateEquipVO(EquipVO equip) {
+        EquipDomain equipDomain = new EquipDomain(equip);
+        equipDomain.updateEquip();
+    }
+
+    @Override
+    public void addEquip(EquipVO equip) {
+        EquipDomain equipDomain = new EquipDomain(equip);
+        equipDomain.addEquip();
+    }
 }

@@ -117,4 +117,26 @@
 		VALUES
 			(#{priceYear},#{name},#{specification},#{techParams},#{unit},#{unitPrice},#{priceSource},#{contractNo},#{project},#{subProject},#{specialtyId},#{supplierAndContact},#{memo},NOW(),NOW())
 	</insert>
+	
+	<update id="updateEquip" parameterType="EquipEntity">
+		UPDATE
+			zc_equip
+		SET
+			PriceYear = #{priceYear},
+			Name = #{name},
+			Specification = #{specification},
+			TechParams = #{techParams},
+			Unit = #{unit},
+			UnitPrice = #{unitPrice},
+			PriceSource = #{priceSource},
+			ContractNo = #{contractNo},
+			Project = #{project},
+			SubProject = #{subProject},
+			SpecialtyId = #{specialtyId},
+			SupplierAndContact = #{supplierAndContact},
+			Memo = #{memo},
+			UpdateTime = NOW()
+		WHERE
+			ID = #{id}
+	</update>
 </mapper> 

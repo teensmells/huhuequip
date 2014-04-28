@@ -21,8 +21,12 @@ public interface EquipService {
     EquipVO loadEquipVO(int id);
 
     void addEquips(List<EquipVO> equipVOs);
+    
+    void addEquip(EquipVO equipVO);
 
     PageModel paginateAllEquip(int page, int limit);
 
     PageModel paginateEquipBySpecialtyId(int specialtyId, int page, int limit);
+
+    void updateEquipVO(EquipVO equip);
 }

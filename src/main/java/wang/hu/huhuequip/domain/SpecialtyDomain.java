@@ -37,6 +37,8 @@ public class SpecialtyDomain {
 
     private List<SpecialtyVO>            specialtyVOs;
 
+    private SpecialtyVO                  specialtyVO;
+
     public SpecialtyDomain() {
 
     }
@@ -47,6 +49,10 @@ public class SpecialtyDomain {
 
     public SpecialtyDomain(List<SpecialtyVO> specialtyVOs) {
         this.specialtyVOs = specialtyVOs;
+    }
+
+    public SpecialtyDomain(SpecialtyVO specialtyVO) {
+        this.specialtyVO = specialtyVO;
     }
 
     public SpecialtyDomain(String specialtyName) {
@@ -83,6 +89,17 @@ public class SpecialtyDomain {
             specialtyVO2EntityCopier.copy(specialtyVO, specialty, null);
             specialtyMapper.addSpecialty(specialty);
         }
+    }
+
+    public int addSpecialty() {
+        if (specialtyVO == null) {
+            return 0;
+        }
+
+        SpecialtyEntity specialty = new SpecialtyEntity();
+        specialtyVO2EntityCopier.copy(specialtyVO, specialty, null);
+        specialtyMapper.addSpecialty(specialty);
+        return specialty.getId();
     }
 
     public SpecialtyVO loadSpecialtyByName() {

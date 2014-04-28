@@ -43,4 +43,10 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         return specialtyDomain.loadSpecialtyByName();
     }
 
+    @Override
+    public int addSpecialty(SpecialtyVO specialtyVO) {
+        SpecialtyDomain specialtyDomain = new SpecialtyDomain(specialtyVO);
+        return specialtyDomain.addSpecialty();
+    }
+
 }

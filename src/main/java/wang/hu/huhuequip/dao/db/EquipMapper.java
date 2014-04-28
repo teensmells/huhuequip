@@ -36,4 +36,5 @@ public interface EquipMapper {
 
     public void addEquip(EquipEntity equip);
 
+    public void updateEquip(EquipEntity equip);
 }

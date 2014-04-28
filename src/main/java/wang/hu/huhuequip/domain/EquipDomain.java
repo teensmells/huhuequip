@@ -36,12 +36,18 @@ public class EquipDomain {
 
     private List<EquipVO>            equipVOs;
 
+    private EquipVO                  equipVO;
+
     public EquipDomain() {
 
     }
 
     public EquipDomain(int id) {
         this.id = id;
+    }
+
+    public EquipDomain(EquipVO equipVO) {
+        this.equipVO = equipVO;
     }
 
     public EquipDomain(List<EquipVO> equipVOs) {
@@ -66,6 +72,14 @@ public class EquipDomain {
         for (EquipVO equipVO : equipVOs) {
             equipMapper.addEquip(convertVO2Entity(equipVO));
         }
+    }
+
+    public void addEquip() {
+        if (equipVO == null) {
+            return;
+        }
+
+        equipMapper.addEquip(convertVO2Entity(equipVO));
     }
 
     public PageModel paginateEquipsBySpecialtyId(int page, int limit) {
@@ -94,6 +108,14 @@ public class EquipDomain {
         }
 
         return PageUtil.convertPage(convertEntitys2VOs(equips), recordCount, page, limit);
+    }
+
+    public void updateEquip() {
+        if (equipVO == null) {
+            return;
+        }
+
+        equipMapper.updateEquip(convertVO2Entity(equipVO));
     }
 
     private List<EquipVO> convertEntitys2VOs(List<EquipEntity> equips) {

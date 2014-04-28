@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wang.hu.huhuequip.dao.db.SpecialtyMapper">
+	<resultMap type="SpecialtyEntity" id="specialtyResult">
+		<id property="id" column="ID" />
+		<result property="specialtyName" column="SpecialtyName" />
+		<result property="addTime" column="AddTime" />
+		<result property="updateTime" column="UpdateTime" />
+	</resultMap>
+	
+	<select id="loadSpecialty" parameterType="Integer" resultType="SpecialtyEntity" resultMap="specialtyResult">
+		SELECT
+			ID,
+			SpecialtyName,
+			AddTime,
+			UpdateTime
+		FROM
+			zc_specialty
+		WHERE
+			ID = #{id}
+	</select>
+	
+	<select id="findAllSpecialty" resultType="SpecialtyEntity" resultMap="specialtyResult">
+		SELECT
+			ID,
+			SpecialtyName,
+			AddTime,
+			UpdateTime
+		FROM
+			zc_specialty
+	</select>
+	
+	<insert id="addSpecialty" parameterType="SpecialtyEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			zc_specialty
+			(SpecialtyName,AddTime,UpdateTime)
+		VALUES
+			(#{specialtyName},NOW(),NOW())
+	</insert>
+	
+	<select id="loadSpecialtyByName" parameterType="String" resultType="SpecialtyEntity" resultMap="specialtyResult">
+		SELECT
+			ID,
+			SpecialtyName,
+			AddTime,
+			UpdateTime
+		FROM
+			zc_specialty
+		WHERE
+			SpecialtyName = #{name}
+	</select>
+</mapper> 

@@ -21,5 +21,7 @@ public interface SpecialtyService {
 
     void addSpecialtys(List<SpecialtyVO> specialtyVOs);
 
+    int addSpecialty(SpecialtyVO specialtyVO);
+
     SpecialtyVO loadSpecialtyByName(String name);
 }

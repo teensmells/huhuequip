@@ -30,12 +30,12 @@
 			zc_specialty
 	</select>
 	
-	<insert id="addSpecialty" parameterType="SpecialtyEntity">
+	<insert id="addSpecialty" parameterType="SpecialtyEntity" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
 			zc_specialty
 			(SpecialtyName,AddTime,UpdateTime)
 		VALUES
-			(#{specialty.specialtyName},NOW(),NOW())
+			(#{specialtyName},NOW(),NOW())
 	</insert>
 	
 	<select id="loadSpecialtyByName" parameterType="String" resultType="SpecialtyEntity" resultMap="specialtyResult">

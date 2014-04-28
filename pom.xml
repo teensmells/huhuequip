@@ -7,7 +7,7 @@
   
   <properties>
   	<spring.version>3.2.6.RELEASE</spring.version>
-  	<struts.version>2.3.16</struts.version>
+  	<struts.version>2.3.16.1</struts.version>
   </properties>
   
   <dependencies>
@@ -24,6 +24,12 @@
         <artifactId>struts2-spring-plugin</artifactId>
         <version>${struts.version}</version>
     </dependency>
+    
+    <dependency>
+       <groupId>org.apache.struts</groupId>
+       <artifactId>struts2-json-plugin</artifactId>
+       <version>${struts.version}</version>
+   </dependency>
   	<!-- end of struts -->
   	
   	<!-- beginning of db -->
@@ -46,7 +52,7 @@
 	<dependency>
         <groupId>poi</groupId>
         <artifactId>poi</artifactId>
-        <version>3.8</version>
+        <version>3.1-FINAL</version>
     </dependency>
     <!-- excel -->
     
@@ -136,7 +142,7 @@
 	    <version>2.1-alpha-1</version>
 	    <configuration>
 	    	<configuration>
-                <warName>${artifactId}-${version}</warName>
+                <warName>${artifactId}</warName>
             </configuration>
 	    </configuration>
 	  </plugin>
